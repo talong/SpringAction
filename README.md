@@ -12,3 +12,7 @@
 8.Spring消息整合RibbitMQ
 9.WebSocket暂不使用
 10.最后切换为SpringBoot
+
+
+其他辅助技术：
+1.测试：
