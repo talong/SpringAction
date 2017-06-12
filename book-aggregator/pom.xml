@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.spring_action.book</groupId>
+  <artifactId>book-aggregator</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <!-- 对于聚合模块来说，其打包方式packaging的值必须为pom，否则就无法构建 -->
+  <packaging>pom</packaging>
+
+  <name>book-aggregator</name>
+  <url>http://maven.apache.org</url>
+
+  <modules>
+    <module>../book-email</module>
+    <module>../book-perisist</module>
+  </modules>
+</project>
