@@ -1,7 +1,7 @@
 #笔记内容比较随意，算是第二遍复习带练习，所以虽然是以搭建内容为主，会掺杂一些笔记进来。
 1.DI所带来的最大收益：松耦合
 2.安装好Maven后，配置setting.xml（关于这里可以参看《Maven实战》2.7.2节，会讲setting.xml全局范围与用户范围的区别）。
-  setting.xml中修改<localRepository>F:\0508\repository</localRepository>设置本地仓库地址，然后再mirror标签内添加如下：
+  setting.xml中修改&lt;localRepository>F:\0508\repository</localRepository>设置本地仓库地址，然后再mirror标签内添加如下：
   <mirror>
       <id>nexus-aliyun</id>
       <mirrorOf>*</mirrorOf>
