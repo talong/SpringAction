@@ -1,13 +1,13 @@
 #笔记内容比较随意，算是第二遍复习带练习，所以虽然是以搭建内容为主，会掺杂一些笔记进来。
 1.DI所带来的最大收益：松耦合
 2.安装好Maven后，配置setting.xml（关于这里可以参看《Maven实战》2.7.2节，会讲setting.xml全局范围与用户范围的区别）。
-  setting.xml中修改&lt;localRepository>F:\0508\repository</localRepository>设置本地仓库地址，然后再mirror标签内添加如下：
-  <mirror>
-      <id>nexus-aliyun</id>
-      <mirrorOf>*</mirrorOf>
-      <name>Nexus aliyun</name>
-      <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-  </mirror>
+  setting.xml中修改&lt;localRepository>F:\0508\repository&lt;/localRepository>设置本地仓库地址，然后再mirror标签内添加如下：
+  &lt;mirror>
+      &lt;id>nexus-aliyun&lt;/id>
+      &lt;mirrorOf>*&lt;/mirrorOf>
+      &lt;name>Nexus aliyun&lt;/name>
+      &lt;url>http://maven.aliyun.com/nexus/content/groups/public&lt;/url>
+  &lt;/mirror>
   这里使用了阿里的镜像仓库，国内使用这个应该更合适些。
   修改好setting.xml后，在eclipse--Maven--User Setting中选择应用该setting.xml即可。此时关于Maven已经配置好，并可以使用了。
 3.在eclipse中创建Maven项目，参看《Maven实战》3.6.2创建Maven项目。
