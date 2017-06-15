@@ -1,0 +1,2 @@
+1.Spring已经测试可以使用，接下来搭建及测试SpringMVC；
+2.配置DispatcherServlet(Java方式配置);
