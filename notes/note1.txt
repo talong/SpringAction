@@ -5,3 +5,4 @@
   隐式的bean发现机制和自动装配；
   建议尽可能的使用自动装配机制。显式配置越少越好。当你需要显式配置bean的时候（比如，有些源码不是由你来维护的，而当你需要为这些代码配置bean的时候），推荐使用类型安全并且比XML更强大的JavaConfig。最后，只有当你想用便利的XML命名空间，并且在JavaConfig中没有同样实现时，才应该使用XML。
 3.在book-email模块下创建包com.spring_action.book.config，并在其下创建类SpringConfig，该类为显式的Java配置类。
+  在test中创建com.spring_action.book.config.test该包写类提供测试Java配置类是否起作用。在这里发现一个问题：在类CDPlayerTest中自动注入的是一个接口，而接口与抽象类是不能实例化的，但是没有报错，测试发现cd实际是SgtPeppers（实现了CompactDisc接口）,所以自动注入这里扫描到了@Component注解的SgtPeppers，如果有多个实现会如何？很明显报错了：NoUniqueBeanDefinitionException，所以此时要考虑@Qualifier指明具体的实现类。
