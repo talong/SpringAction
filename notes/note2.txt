@@ -1,2 +1,6 @@
 1.Spring已经测试可以使用，接下来搭建及测试SpringMVC；
 2.配置DispatcherServlet(Java方式配置);
+  涉及三个类：WebConfig  RootConfig  SpringMVCBookWebAppInitializer
+  WebConfig 负责Web组件的bean，如控制器、视图解析器以及处理器映射，而RootConfig负责非Web组件，如驱动应用后端的中间层和数据层组件。
+  额外需要注意的是，SpringMVCBookWebAppInitializer一旦继承AbstractAnnotationConfigDispatcherServletInitializer，就需要手动引入servlet-api.jar，Maven无法起作用，原因暂时不明。
+  使用mock Spring MVC测试控制器，如类EmailControllerTest。
