@@ -1,2 +1,10 @@
-第三天：
-
+1.如果我们想在响应中不仅要包括状态，还要包含所产生的错误，那该怎么办呢？此时的话，我们就不能将异常视为HTTP错误，而是要按照处理请求的方式来处理异常了（引自《Maven实战》7.3.2）。
+  通过@ExceptionHandler(DuplicateSpittleException.class)标注的方法，会处理该类中所有DuplicateSpittleException异常。
+  如果需要将@ExceptionHandler(DuplicateSpittleException.class)标注的方法用来处理项目中所有此类异常，该如何做？
+  将该类用@ControolerAdivce注解即可。这个类会包含一个或多个如下类型的方法：
+  @ExceptionHandler或@InitBinder或@ModelAttribute注解标注的方法，在带有@ControolerAdivce注解的类中，以上所述的方法会运用到整个应用程序所有控制器中带有WRequestMapping注解的方法上。（@ControolerAdivce可以替代@Component）
+2.Java中使用占位符
+  model.addAttribute("username", spitter.getUsername());
+  return "redirect:/spitter/{username}";
+3.SpringSecurity的Java配置，只需要编写一个配置类继承AbstractSecurityWebApplicationInitializer即可。因为AbstractSecurityWebApplicationInitializer实现了WebApplication-Initializer,因此Spring会发现他，并用他在Web容器中注册DelegatingFilterProxy（xml配置时用的类）
+  重载WebSecurityConfigurerAdapter中的configure设置登录限制。
