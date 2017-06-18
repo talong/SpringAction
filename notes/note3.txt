@@ -8,3 +8,4 @@
   return "redirect:/spitter/{username}";
 3.SpringSecurity的Java配置，只需要编写一个配置类继承AbstractSecurityWebApplicationInitializer即可。因为AbstractSecurityWebApplicationInitializer实现了WebApplication-Initializer,因此Spring会发现他，并用他在Web容器中注册DelegatingFilterProxy（xml配置时用的类）
   重载WebSecurityConfigurerAdapter中的configure设置登录限制。
+4.使用profile在运行时选择数据源
