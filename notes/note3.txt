@@ -12,3 +12,4 @@
 5.添加Hibernate
   增加HibernateConfig，将返回一个sessionFactory，并被设置为@Bean供其他类使用。
   增加RepositoryExceptions Bean，给不使用模板的Hibernate Repository添加异常装换功能。
+6.增加CachingConfig，作用启用缓存并声明缓存管理器
