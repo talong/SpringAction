@@ -9,3 +9,6 @@
 3.SpringSecurity的Java配置，只需要编写一个配置类继承AbstractSecurityWebApplicationInitializer即可。因为AbstractSecurityWebApplicationInitializer实现了WebApplication-Initializer,因此Spring会发现他，并用他在Web容器中注册DelegatingFilterProxy（xml配置时用的类）
   重载WebSecurityConfigurerAdapter中的configure设置登录限制。
 4.使用profile在运行时选择数据源
+5.添加Hibernate
+  增加HibernateConfig，将返回一个sessionFactory，并被设置为@Bean供其他类使用。
+  增加RepositoryExceptions Bean，给不使用模板的Hibernate Repository添加异常装换功能。
