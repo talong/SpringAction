@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.spring_action.book.db.HibernateRepository;
@@ -40,6 +41,7 @@ public class HibernateEmailRepository implements HibernateRepository {
 	}
 
 	@Override
+	@Cacheable("emailCache")  //缓存这个方法的结果，推荐放在接口方法上
 	public Email findOne(long id) {
 		return (Email) currentSession().get(Email.class, id);
 	}
@@ -55,6 +57,12 @@ public class HibernateEmailRepository implements HibernateRepository {
 				.createCriteria(Email.class)
 				.add(Restrictions.eq("message", message))
 				.list().get(0);
+	}
+
+	@Override
+	public void remove(long emailId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
