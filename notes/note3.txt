@@ -13,3 +13,18 @@
   增加HibernateConfig，将返回一个sessionFactory，并被设置为@Bean供其他类使用。
   增加RepositoryExceptions Bean，给不使用模板的Hibernate Repository添加异常装换功能。
 6.增加CachingConfig，作用启用缓存并声明缓存管理器
+7.使用XML声明缓存的原因
+  不喜欢在自己的源码中添加Spring注解
+  你可能需要在没有源码（或其他人的代码）的bean上应用缓存功能。
+8.使用注解保护方法
+  Spring Security提供了三种不同的安全注解：
+  Spring Security自带的@Secured注解；
+  JSR-250的@RolesAllowed注解；
+  表达式驱动的注解，包括@PreAuthorize、@PostAuthorize、@PreFilter和@PostFilter。
+  增加配置类MethodSecurityConfig，启用基于注解的方法安全性。配合@Secured({"ROLE_ADMIN"})注解使用。@Secured注解的不足之处在于它是Spring特定的注解。如果更倾向于使用Java标准定义的注解，那么你可以考虑使用@RolesAllowed注解，此时需要将@EnableGlobalMethodSecurity(securedEnabled=true)改为@EnableGlobalMethodSecurity(jsr250Enabled=true),两种注解可以同时启用，并不冲突。
+  使用支持SpEL表达式方法安全注解举例如下：
+  @PreAuthorize("(hasRole('ROLE_ADMIN') and #email.text.length() <= 140)"
+  +"or hasRole('ROLE_SPITTER')")
+  public void addSpittle(Spittle spittle) {}
+  通过重载GlobalMethodSecurityConfiguration的createExpressionHandler方法，让@PreFilter("hasPermission(targetObject, 'delete')")中的hasPermission()调用我们自定义的类来实现过滤。
+  自定义的类SpittlePermissionEvaluator让我们了解到，可通过编写部分框架接口的实现并通过在配置中主动设置，来达到让框架调用我们自己的类，而不是默认的实现类。
