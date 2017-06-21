@@ -1,7 +1,12 @@
 package com.spring_action.book.rmi;
 
+import java.util.Properties;
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.remoting.rmi.RmiServiceExporter;
+import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 
 import com.spring_action.book.service.EmailService;
 
@@ -24,4 +29,33 @@ public class RmiTool {
 		
 		return rmiExporter;
 	}
+	
+	/**
+	 * 使用HttpInvokerServiceExporter将EmailService发布为Rmi服务
+	 * @param service
+	 * @return
+	 */
+	@Bean
+	public HttpInvokerServiceExporter 
+	     httpExportedEmailService(EmailService service) {
+		HttpInvokerServiceExporter exporter = 
+				new HttpInvokerServiceExporter();
+		exporter.setService(service);
+		exporter.setServiceInterface(EmailService.class);
+		return exporter;
+	}
+	
+	/**
+	 * 设置针对rmi访问的映射
+	 * @return
+	 */
+	@Bean
+	public HandlerMapping httpInvokerMapping() {
+		SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
+		Properties mappings = new Properties();
+		mappings.setProperty("email.service", "httpExportedEmailService");
+		mapping.setMappings(mappings);
+		return mapping;
+	}
+	
 }
