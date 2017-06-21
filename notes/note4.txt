@@ -1,0 +1,9 @@
+1.创建类RmiTool，作用：使用RmiServiceExporter将EmailService发布为Rmi服务；
+2.创建类ClientGetRmi，作用:使用RmiProxyFactoryBean引用EmailService的RMI服务，这之后EmailService就可以使用DI进行注入；
+3.SOA（面向服务的架构），SOA核心理念是，应用程序可以并且应该被设计成依赖于一组公共的核心服务，而不是为每个应用都重新实现相同的功能。
+4.将应用暴露为RESTFUL资源，是否算是RPC?  REST与RPC几乎没有任何关系。RPC是面向服务的，并关注于行为和动作；而REST是面向资源的，强调描述应用程序的事物和名词。
+5.以下引用自“Spring实战”：以信息为中心的表述性状态转移（Representational State Transfer,REST）已成为替换传统SOAP Web服务的流行方案。SOAP一般会关注行为和处理，而REST关注的死要处理的数据。
+  资源表述的首选应该是XML和JSON。
+  Spring的ContentNegotiatingViewResolver是一个特殊的视图解析器，它考虑到了客户端所需要的内容类型。
+  由于ContentNegotiatingViewResolver存在的限制（参看16.2.1），所以不建议使用ContentNegotiatingViewResolver。Spring的消息转换功能来生成资源表述根河市。
+  
