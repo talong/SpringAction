@@ -8,3 +8,4 @@
   由于ContentNegotiatingViewResolver存在的限制（参看16.2.1），所以作者不建议使用ContentNegotiatingViewResolver，而是使用Spring的消息转换功能来生成资源表述。
   以下引子《Spring实战》：消息转换提供了一种更直接的方式，它能将控制器产生的数据转换为服务客户端的表述形式。当使用消息转换功能DispatcherServlet不再需要那么麻烦地将模型数据传送到视图中。实际上，这里根本就没有模型，也没有视图，只有控制器产生的数据，以及消息转换器转换数据之后所产生的资源表述。
   此时，请求的Accept头信息就比较总要，例如它表明接受“application/json”.
+6.RestTemplate的36中方法使用。
