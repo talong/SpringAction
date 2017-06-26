@@ -1,4 +1,4 @@
-#笔记内容比较随意，算是第二遍复习带练习，所以虽然是以搭建内容为主，会掺杂一些笔记进来。<br>
+#笔记内容比较随意，算是第二遍复习带练习，所以虽然是以搭建内容为主，会掺杂一些笔记(笔记主要在notes文件夹下)进来。<br>
 1.DI所带来的最大收益：松耦合<br>
 2.安装好Maven后，配置setting.xml（关于这里可以参看《Maven实战》2.7.2节，会讲setting.xml全局范围与用户范围的区别）。<br>
   setting.xml中修改localRepository设置本地仓库地址，然后在mirror标签内添加url为http://maven.aliyun.com/nexus/content/groups/public的镜像地址，
