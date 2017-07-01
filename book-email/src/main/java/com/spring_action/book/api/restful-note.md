@@ -17,3 +17,6 @@
     一旦使用了@ResponseBody消息转换器会自动根据Accept头信息将响应转换为客户端需要的响应体。
     同理@RequestBody。
     一个好的REST API不仅能够在客户端和服务器之间传递资源，它还能狗给客户端提供额外的元数据，帮助客户端理解资源或者在请求中出现了什么情况。
+    使用ResponseEntity替代@ResponseBody。ResponseEntity（它包含了@ResponseBody的语义）的优势是它可以包含响应相关的元数据（如头部信息和状态码）以及要转换成资源表述的对象。
+    ResponseEntity相对@ResponseBody最大的优势在于，ResponseEntity可以在响应中设置头信息。
+    编写REST客户端：使用RestTemplate可以消除样板式代码。其中exchange可以设置发送的头信息，是其他getForObject()等方法不具备的。
