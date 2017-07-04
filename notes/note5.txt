@@ -1,0 +1,18 @@
+<h4>第17章 Spring消息</h4>
+    ActiveMQ是一个伟大的开源消息代理产品，也是使用JMS进行异步消息传递的最佳选择。
+    因为选择AcitveMQ作为我们的消息代理，所以我们必须配置JMS连接工厂，让他知道如何连接到ActiveMQ。ActiveMQConnectionFactory是ActiveMQ自带的连接工厂。
+    <bean id="ConnectionFactory" class="...ActiveMQFactory" p:brokerURL="tcp://localhost:61616"/>
+    <bean id="spittleQueue" class="ActiveMQQueue" c:_="spittle.alert.queue"/>
+    使用Spring提供的jms模板（JmsTemplate）。JmsTemplate可以创建连接，获得会话以及发送和接受消息。这使得我们可以专注于发送消息或处理接收到的消息，且Spring提供
+了JmsException更详细的异常说明子类。
+    <bean id="jmsTemplate" class="JmsTemplate" c:_-ref="connectionFactory"/>
+    JmsTemplate实现自JmsOperations,注入一般都是注入接口，所以@Autowired JmsOperations.
+    JmsOperations.reviceAndConvert()是同步方法，同步方法接收异步消息，是不是感觉很怪异？
+    这就是消息驱动POJO的用武之处。让我们看看如何使用能够响应消息的组件异步接收消息。
+    Spring如何创建消息驱动的POJO：创建消息监听器-->配置消息监听器
+    使用基于消息的RPC
+    
+    AMQP(高级消息队列协议)
+    AMQP为消息定义了线路层的协议，而JMS定义的是API规范。AMQP不仅能够跨不同的AMQP实现，还能跨语言和平台。JMS只有两种消息模式：点对点、发布订阅。
+    在JMS中有三个主要的参与者：消息的生产者、消费者和传递消息的通道。生产者与消费者都与通道耦合，与之不同，AMQP的生产者不会直接将消息发送到队列，而是引入了一种
+间接机制Exchange。当前RabbitMQ是一个流行的消息开源代理，它实现了AMQP，SpringAMQP为RabbitMQ提供了支持。
