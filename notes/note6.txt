@@ -36,4 +36,14 @@ wt 等待IO CPU时间。
   减少上下文切换的方法有无锁并发编程、CAS算法、使用最少线程和使用协程。
   
 3.使用jstack查看指定线程信息
-  jstack是jvm命令，需要先卸载openjdk，然后安装jdk。
+  jstack是jvm命令，需要先卸载openjdk，然后安装jdk。顺便安装Tomcat。
+  使用命令如：jstack 4630 > /home/yzg/dump01  将进程4630里线程信息输出到dump01的文件中。
+  然后使用如下命令查看每种线程状态的数量：
+  [root@bogon yzg]# grep java.lang.Thread.State dump01 | awk '{print $2$3$4$5}' | sort | uniq -c
+     11 RUNNABLE
+      1 TIMED_WAITING(onobjectmonitor)
+      1 TIMED_WAITING(parking)
+      3 TIMED_WAITING(sleeping)
+      2 WAITING(onobjectmonitor)
+     20 WAITING(parking)
+
