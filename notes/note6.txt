@@ -45,5 +45,7 @@ wt 等待IO CPU时间。
       1 TIMED_WAITING(parking)
       3 TIMED_WAITING(sleeping)
       2 WAITING(onobjectmonitor)
-     20 WAITING(parking)
+     20 WAITING(parking)
+4.锁的升级与对比
+  Java SE1.6为了减少获得锁和释放锁带来的性能消耗，引入了“偏向锁”和“轻量级锁”，在Java SE 1.6中，锁一共有4中状态，级别从低到高依次是：无锁状态、偏向锁状态、轻量级锁状态和重量级锁状态，这几个状态会随着竞争逐渐升级。锁可以升级但不能降级，目的是为了提高获得锁和释放锁的效率。
 
