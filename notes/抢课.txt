@@ -6,6 +6,8 @@
     1.使用线程安全的ConcurrentLinkedQueue存储并发请求内容；
     2.Tomcat启用nio协议并开启线程池支持；
     3.判断ConcurrentLinkedQueue是否为空，不为空就从ConcurrentLinkedQueue取数据，使用Executor框架并发执行；
-    4.一个学生是否能选该门课存在多个条件判断，例如：a.选课数量是否超过限制  b.当前所选课是否与已选课冲突  c.当前课程是否已满，将这些判断并发执行，全部执行完才能执行后续选课的写操作，这里可以采用CountDownLatch使写操作在其他线程执行完后再执行。由于并发执行，需要采用事务隔离级别Serializable (串行化)来避免脏读、不可重复读、幻读的发生。（这里是一个事务）
+    4.一个学生是否能选该门课存在多个条件判断，例如：a.选课数量是否超过限制  b.当前所选课是否与已选课冲突  c.当前课程是否已满，将这些判断并发执行，
+    全部执行完才能执行后续选课的写操作，这里可以采用CountDownLatch使写操作在其他线程执行完后再执行。由于并发执行，需要采用事务隔离级别Serializable (串行化)来避免脏读、不可重复读、幻读的发生。（这里是一个事务）
     
-    针对第4条，一个请求的abc三个查询可以并发执行（Executor用在这里），但多个请求的abc不能并行执行。由于使用了CountDownLatch，因此不用使用事物隔离级别Serializable。如果要并行，就需要使用Serializable，但使用了Serializable就已经不是并行了，因为count行查询被锁。
+    针对第4条，一个请求的abc三个查询可以并发执行（Executor用在这里），但多个请求的abc不能并行执行。由于使用了CountDownLatch，因此不用使用事物隔离
+ 级别Serializable。如果要并行，就需要使用Serializable，但使用了Serializable就已经不是并行了，因为count行查询被锁。
